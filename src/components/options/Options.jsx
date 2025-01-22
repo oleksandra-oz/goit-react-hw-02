@@ -1,6 +1,7 @@
 const Options = ({ setOptionsData, optionsData, totalFeedback }) => {
 
-const updateFeedback = (feedbackType) => {
+  
+    const updateFeedback = (feedbackType) => {
         setOptionsData((prev) => ({
             ...prev,
             [feedbackType]: prev[feedbackType] + 1
