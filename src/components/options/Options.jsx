@@ -1,35 +1,21 @@
-const Options = ({ setOptionsData, optionsData, totalFeedback }) => {
+const Options = ({ updateFeedback, resetFeedback, totalFeedback }) => {
+  const feedbackOptions = ['good', 'neutral', 'bad'];
 
-  
-    const updateFeedback = (feedbackType) => {
-        setOptionsData((prev) => ({
-            ...prev,
-            [feedbackType]: prev[feedbackType] + 1
-        }));
-    };
+  return (
+    <div>
+      {/* Кнопки для збору відгуків */}
+      {feedbackOptions.map((option) => (
+        <button key={option} onClick={() => updateFeedback(option)}>
+          {option}
+        </button>
+      ))}
 
-    const resetFeedback = () => {
-        setOptionsData({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
-  };
-
-    const btnsOptions = Object.keys(optionsData);
-
-    return (
-        <div>
-            {btnsOptions.map((option) => (
-                <button key={option} onClick={() => updateFeedback(option)}>
-                    {option}
-                </button>
-            ))}
-
-            {totalFeedback > 0 && (
-                <button onClick={resetFeedback}>Reset</button>)}
-        </div>
-    );
+      {/* Кнопка скидання відгуків видима лише, якщо є хоча б один відгук */}
+      {totalFeedback > 0 && (
+        <button onClick={resetFeedback}>Reset</button>
+      )}
+    </div>
+  );
 };
 
 export default Options;
